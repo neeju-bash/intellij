@@ -3,8 +3,8 @@ package com.example.demo.controller;
 import java.util.HashSet;
 
 import com.example.demo.service.BookService;
+import com.example.demo.service.BookServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,26 +18,26 @@ import com.example.demo.modal.Book;
 public class BookController {
 
     @Autowired
-    BookService bookService;
+    BookServiceImp bookServiceImp;
 
     @PostMapping("/")
     public void addBook(@RequestBody Book book) {
-        bookService.addBook(book);
+        bookServiceImp.addBook(book);
     }
 
     @GetMapping("/findall")
     public HashSet<Book> getAllBook() {
-        return bookService.findAllBook();
+        return bookServiceImp.findAllBook();
     }
 
     @GetMapping("/findbyid/{id}")
     public Book geBookById(@PathVariable long id) {
-        return bookService.findBookByID(id);
+        return bookServiceImp.findBookByID(id);
     }
 
     @DeleteMapping("/delete")
     public void deleteBook() {
-        bookService.deleteAllData();
+        bookServiceImp.deleteAllData();
     }
 
 }
